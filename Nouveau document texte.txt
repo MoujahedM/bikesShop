@@ -1,0 +1,74 @@
+  
+function each(coll, f) {
+  if (Array.isArray(coll)) {
+    for (var i = 0; i < coll.length; i++) {
+      f(coll[i], i);
+    }
+  } else {
+    for (var key in coll) {
+      f(coll[key], key);
+    }
+  }
+}
+
+function filter(array, predicate) {
+  var acc = [];
+  each(array, function (element, i) {
+    if (predicate(element, i)) {
+      acc.push(element);
+    }
+  });
+  return acc;
+}
+
+
+
+var format
+  var myEach = function (array) {
+    each(array, function (e) {
+      console.log(e);
+      format =  $(`<div class="grid-item">
+      <div class="flip-card">
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+          <img
+          src=${e.imgSrc}
+          alt="${e.name} ">
+          </div>
+          <div class="flip-card-back">
+          <h1>${e.name}</h1>
+          <p class="price">${e.price}</p>
+          <p></p>
+          <button class="cart">Add to Cart</button>
+      
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>`)
+    $("#container").append(format);}
+        )
+        
+    }
+    $(document).ready(myEach(data))
+  
+
+    $("#search").click(function() {
+      $(".grid-item").remove();
+      var filtred = [];
+      filtred = filter(data, function (e, i) {
+        return e <= e.price || e === e.category ||e === e.name ;
+      });
+      myEach(filtred);
+    });
+
+    $('.cart').on("click",function(e){
+      var price =$(e.target).siblings();
+      Cart.push(parseInt(price[1].innerHTML.slice(1))+1)
+      $('#prices').append($('<div class="cartItem"><p>'+price[1].innerHTML+'</p>'))
+      var total = Cart.reduce(function(a,b){return a+b},0)
+      $("#total").text("total: $"+ total)
+      
+    });
+  myEach(data);
